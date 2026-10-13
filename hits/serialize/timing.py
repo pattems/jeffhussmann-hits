@@ -1,22 +1,22 @@
 import itertools
-import log
+from . import log
 
 write_file = log.write_file
 
 def read_file(file_name):
     def process_line(line):
         description, value = line.strip().split(':')
-        value = map(float, value.split(','))
+        value = list(map(float, value.split(',')))
         return description, value
     
     with open(file_name) as fh:
-        pairs = map(process_line, fh)
+        pairs = list(map(process_line, fh))
 
     return pairs
 
 def combine_data(first_pairs, second_pairs):
     combined_pairs = []
-    zipped = itertools.izip_longest(first_pairs, second_pairs, fillvalue=(None, None))
+    zipped = itertools.zip_longest(first_pairs, second_pairs, fillvalue=(None, None))
     for (first_d, first_v), (second_d, second_v) in zipped:
         if first_d != second_d:
             raise RuntimeError('descriptions do not match')

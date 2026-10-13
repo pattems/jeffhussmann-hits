@@ -1,5 +1,5 @@
 import itertools
-import collections
+import collections.abc
 
 extension = 'txt'
 
@@ -9,7 +9,7 @@ def _write_pairs(pairs, log_file):
         where value is a comma-separated list of ints or floats.
     '''
     for description, value in pairs:
-        if not isinstance(value, collections.Iterable):
+        if not isinstance(value, collections.abc.Iterable):
             value = [value]
         if isinstance(value[0], int):
             to_string = str
