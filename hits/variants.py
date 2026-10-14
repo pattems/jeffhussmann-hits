@@ -303,7 +303,7 @@ def count_pe_mismatches(sam_file,
 
         return no_SNP_bases, mismatches_this_read
 
-    mapping_pairs = itertools.izip(*[mappings]*2)
+    mapping_pairs = zip(*[mappings]*2)
 
     for R1_mapping, R2_mapping in mapping_pairs:
         skip = False
@@ -315,8 +315,8 @@ def count_pe_mismatches(sam_file,
             skip = True
         
         # Ignore, for now, reads with indels or clipping
-        if sam.contains_indel_pysam(R1_mapping) or sam.contains_indel_pysam(R2_mapping):
-            if sam.contains_indel_pysam(R1_mapping):
+        if sam.contains_indel(R1_mapping) or sam.contains_indel(R2_mapping):
+            if sam.contains_indel(R1_mapping):
                 if sam.indel_distance_from_edge(R1_mapping.cigar) > 10:
                     indel_qnames[R1_mapping.qname] += 1
             else:
