@@ -15,7 +15,7 @@ def write_file(array, file_name):
 def read_file(file_name):
     ''' Reads the format written by array_file.write into an array.
     '''
-    array = np.loadtxt(file_name, dtype=np.int, ndmin=2)
+    array = np.loadtxt(file_name, dtype=int, ndmin=2)
     return array
 
 def combine_data(first_array, second_array):

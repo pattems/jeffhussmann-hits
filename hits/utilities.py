@@ -76,7 +76,7 @@ def counts_to_array(counts, dim=1):
         if len(counts) > 0:
             larger_of_two = map(max, counts)
             biggest = max(larger_of_two)
-            array = np.zeros(shape=(biggest + 1, biggest + 1), dtype=np.int)
+            array = np.zeros(shape=(biggest + 1, biggest + 1), dtype=int)
             for key, count in counts.items():
                 array[key] = count
         else:
